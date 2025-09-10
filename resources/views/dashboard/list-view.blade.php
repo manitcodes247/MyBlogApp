@@ -195,10 +195,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $i=0; ?>
                       @foreach ($articles as $article)
                         <tr>
-                          <td><?php $i=$i+1; echo $i; ?></td>
+                          <td>{{ $loop->iteration }}</td>
                           <td>
                             <span>{{ $article->title }}</span>
                           </td>

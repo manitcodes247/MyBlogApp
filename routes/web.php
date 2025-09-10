@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\PublicController;
 
 // Root redirect
 Route::get('/', function () {
     return session()->has('admin_id')
-        ? redirect()->route('articles.index')
-        : redirect()->route('login');
+        ? redirect()->route('articles.index')        
+        : redirect()->route('public.articles.index');
 });
 
 // Guest-only routes
@@ -28,3 +29,8 @@ Route::post('logout', [AuthController::class, 'logout'])
 Route::middleware('admin.auth')->group(function () {
     Route::resource('/articles', ArticleController::class);
 });
+
+// Public view for everyone
+Route::get('/blog', [PublicController::class, 'index'])->name('public.articles.index');
+Route::get('/blog/{id}', [PublicController::class, 'show'])->name('public.articles.show');
+

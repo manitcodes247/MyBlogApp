@@ -30,12 +30,13 @@
               @endif
 
               @if($errors->any())
-                  <div class="alert alert-danger">
+                  <div class="alert alert-danger alert-dismissible" role="alert">
                       <ul class="mb-0">
                           @foreach($errors->all() as $error)
                               <li>{{ $error }}</li>
                           @endforeach
                       </ul>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   </div>
               @endif
               <form id="formAuthentication" class="mb-5" action="{{ route('register.post') }}" method="POST">
